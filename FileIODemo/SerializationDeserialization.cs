@@ -11,7 +11,7 @@ namespace FileIODemo
 {
     class SerializationDeserialization
     {
-        public string path = "abc";
+        public string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\binarySerialize.txt";
 
         public string Name { get; private set; }
         public string Description { get; private set; }
@@ -24,22 +24,21 @@ namespace FileIODemo
             binaryFormatter.Serialize(fileStream, demo);
             Console.ReadKey();
         }
-        public void BinaryDeSerialization()
+        public void BinaryDeserialization()
         {
-            Demo demo = new Demo();
-            FileStream fileStream = new FileStream(path, FileMode.Create);
+            FileStream fileStream = new FileStream(path, FileMode.Open);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Deserialize(fileStream);
-            Console.WriteLine("Application Id:{0} ", demo.ApplicationId);
-            Console.WriteLine("Application Name:{0} ", demo.ApplicationName);
+            Demo deserializedObject = (Demo)binaryFormatter.Deserialize(fileStream);
+            Console.WriteLine($"Application Id:  {deserializedObject.ApplicationId}");
+            Console.WriteLine($"Application Name:  {deserializedObject.ApplicationName}");
             Console.ReadKey();
         }
         public void JsonSerialization()
         {
-            BlogSites blogSites = new BlogSites();
+            BlogSites blogSites = new BlogSites()
             {
-                Name = "Sam";
-                Description = "Welcome Json";
+                Name = "Sam",
+                Description = "Welcome Json"
             };
             string jsonData = JsonConvert.SerializeObject(blogSites);
             Console.WriteLine(jsonData);
@@ -48,16 +47,25 @@ namespace FileIODemo
         {
             string jSonData = @"{
                 'Name' : 'Sam',
-                'Description': 'Welcome Json';
+                'Description': 'Welcome Json'
                 }";
             BlogSites blogSites = JsonConvert.DeserializeObject<BlogSites>(jSonData);
             Console.WriteLine(blogSites.Name);
             Console.WriteLine(blogSites.Description);
         }
+        public void XMLSerialize()
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(OrderForm));
+            FileStream fileStream = new FileStream(@"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\xmlSerialize.txt", FileMode.Create);
+            OrderForm orderForm = new OrderForm();
+            DateTime dateTime = new DateTime(2020, 10, 25);
+            orderForm.OrderDate = dateTime;
+            xmlSerializer.Serialize(fileStream, orderForm);
+        }
         public void XmlDeSerialization()
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(OrderForm));
-            FileStream fileStream = new FileStream("path", FileMode.Open);
+            FileStream fileStream = new FileStream(@"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\xmlSerialize.txt", FileMode.Open);
             OrderForm orderForm = (OrderForm)xmlSerializer.Deserialize(fileStream);
             Console.WriteLine(orderForm.OrderDate);
         }
@@ -66,8 +74,7 @@ namespace FileIODemo
     [Serializable]
     public class Demo
     {
-
-        public string ApplicationName { get; set; }
+        public string ApplicationName { get; set; } = "Binary Serialize";
         public int ApplicationId { get; set; } = 1001;
     }
     [DataContract]

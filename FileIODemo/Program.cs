@@ -9,17 +9,21 @@ namespace FileIODemo
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            FileExists();
-            ReadLines();
-            ReadText();
-            CopyFile();
+            //FileExists();
+            //ReadLines();
+            //ReadText();
+            //CopyFile();
             //Delete();
-            Program p = new Program();
-            p.ReadFromStramReader();
-            p.WriteUsingStreamWriter();
-            //SerializationDeserialization serializationAndDeserialization = new SerializationDeserialization();
+            //Program p = new Program();
+            //p.ReadFromStramReader();
+            //p.WriteUsingStreamWriter();
+            SerializationDeserialization serializationAndDeserialization = new SerializationDeserialization();
             //serializationAndDeserialization.BinarySerialization();
-            //serializationAndDeserialization.BinaryDeSerialization();
+            //serializationAndDeserialization.BinaryDeserialization();
+            //serializationAndDeserialization.JsonSerialization();
+            //serializationAndDeserialization.JsonDeSerialization();
+            //serializationAndDeserialization.XMLSerialize();
+            serializationAndDeserialization.XmlDeSerialization();
         }
 
         public static void FileExists()
@@ -38,7 +42,7 @@ namespace FileIODemo
                 string[] lines = File.ReadAllLines(path);
                 Console.WriteLine(lines[0]);
                 Console.WriteLine(lines[1]);
-                //Console.WriteLine(lines.Length);
+                Console.WriteLine("Number of lines " + lines.Length);
                 Console.ReadKey();
             }
             else
