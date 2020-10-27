@@ -9,10 +9,10 @@ namespace FileIODemo
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            //FileExists();
-            //ReadLines();
-            //ReadText();
-            //CopyFile();
+            FileExists();
+            ReadLines();
+            ReadText();
+            CopyFile();
             //Delete();
             Program p = new Program();
             p.ReadFromStramReader();
@@ -24,7 +24,7 @@ namespace FileIODemo
 
         public static void FileExists()
         {
-            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIODemo\Sample.txt";
+            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\Sample.txt";
             if (File.Exists(path))
                 Console.WriteLine("File exists");
             else
@@ -32,12 +32,13 @@ namespace FileIODemo
         }
         public static void ReadLines()
         {
-            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIODemo\Sample.txt";
+            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\Sample.txt";
             if (File.Exists(path))
             {
                 string[] lines = File.ReadAllLines(path);
                 Console.WriteLine(lines[0]);
                 Console.WriteLine(lines[1]);
+                //Console.WriteLine(lines.Length);
                 Console.ReadKey();
             }
             else
@@ -47,7 +48,7 @@ namespace FileIODemo
         }
         public static void ReadText()
         {
-            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIODemo\Sample.txt";
+            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\Sample.txt";
             if (File.Exists(path))
             {
                 string lines = File.ReadAllText(path);
@@ -61,8 +62,8 @@ namespace FileIODemo
         }
         public static void CopyFile()
         {
-            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIODemo\Sample.txt";
-            string newPath = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIODemo\SampleCopy.txt";
+            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\Sample.txt";
+            string newPath = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\SampleCopy.txt";
             if (File.Exists(path))
             {
                 File.Copy(path, newPath);
@@ -75,7 +76,7 @@ namespace FileIODemo
         }
         public static void Delete()
         {
-            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIODemo\SampleCopy.txt";
+            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\SampleCopy.txt";
             if (File.Exists(path))
             {
                 File.Delete(path);
@@ -87,12 +88,12 @@ namespace FileIODemo
         }
         public void ReadFromStramReader()
         {
-            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIODemo\Sample.txt";
+            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\Sample.txt";
             if (File.Exists(path))
             {
                 using (StreamReader sr = File.OpenText(path))
                 {
-                    String fileData = "";
+                    string fileData = "";
                     while ((fileData = sr.ReadLine()) != null)
                         Console.WriteLine((fileData));
                 }
@@ -105,7 +106,7 @@ namespace FileIODemo
         }
         public void WriteUsingStreamWriter()
         {
-            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIODemo\Sample.txt";
+            string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\Sample.txt";
             if (File.Exists(path))
             {
                 using (StreamWriter streamWriter = File.AppendText(path))
