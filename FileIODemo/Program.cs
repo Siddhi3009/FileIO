@@ -9,20 +9,22 @@ namespace FileIODemo
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            //FileExists();
-            //ReadLines();
-            //ReadText();
-            //CopyFile();
-            //Delete();
-            //Program p = new Program();
-            //p.ReadFromStramReader();
-            //p.WriteUsingStreamWriter();
+            //File IO Operations
+            FileExists();
+            ReadLines();
+            ReadText();
+            CopyFile();
+            Delete();
+            Program p = new Program();
+            p.ReadFromStramReader();
+            p.WriteUsingStreamWriter();
+            //Serialization and Deserialization operations
             SerializationDeserialization serializationAndDeserialization = new SerializationDeserialization();
-            //serializationAndDeserialization.BinarySerialization();
-            //serializationAndDeserialization.BinaryDeserialization();
-            //serializationAndDeserialization.JsonSerialization();
-            //serializationAndDeserialization.JsonDeSerialization();
-            //serializationAndDeserialization.XMLSerialize();
+            serializationAndDeserialization.BinarySerialization();
+            serializationAndDeserialization.BinaryDeserialization();
+            serializationAndDeserialization.JsonSerialization();
+            serializationAndDeserialization.JsonDeSerialization();
+            serializationAndDeserialization.XMLSerialize();
             serializationAndDeserialization.XmlDeSerialization();
         }
 

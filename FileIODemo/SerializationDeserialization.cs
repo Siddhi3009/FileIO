@@ -9,13 +9,17 @@ using System.Xml.Serialization;
 
 namespace FileIODemo
 {
+    /// <summary>
+    /// Serialization and deserialization methods for binary, XML, JSON serialization and deserialization
+    /// </summary>
     class SerializationDeserialization
     {
         public string path = @"C:\Users\Administrator\Desktop\BridgeLabz Practice\33. File IO Operation\FileIO\FileIODemo\binarySerialize.txt";
-
         public string Name { get; private set; }
         public string Description { get; private set; }
-
+        /// <summary>
+        /// Demo class serialized and stored in txt file. 
+        /// </summary>
         public void BinarySerialization()
         {
             Demo demo = new Demo();
@@ -24,6 +28,9 @@ namespace FileIODemo
             binaryFormatter.Serialize(fileStream, demo);
             Console.ReadKey();
         }
+        /// <summary>
+        /// serialized Demo class deserialized and its properties displayed.
+        /// </summary>
         public void BinaryDeserialization()
         {
             FileStream fileStream = new FileStream(path, FileMode.Open);
@@ -33,6 +40,9 @@ namespace FileIODemo
             Console.WriteLine($"Application Name:  {deserializedObject.ApplicationName}");
             Console.ReadKey();
         }
+        /// <summary>
+        /// BlogSites class serialized and stored in json file
+        /// </summary>
         public void JsonSerialization()
         {
             BlogSites blogSites = new BlogSites()
@@ -43,6 +53,9 @@ namespace FileIODemo
             string jsonData = JsonConvert.SerializeObject(blogSites);
             Console.WriteLine(jsonData);
         }
+        /// <summary>
+        /// serialized BlogSites class in json format is deserialised and its properties are displayed on console.
+        /// </summary>
         public void JsonDeSerialization()
         {
             string jSonData = @"{
@@ -53,6 +66,9 @@ namespace FileIODemo
             Console.WriteLine(blogSites.Name);
             Console.WriteLine(blogSites.Description);
         }
+        /// <summary>
+        /// OrderForm class serialized in xml format
+        /// </summary>
         public void XMLSerialize()
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(OrderForm));
@@ -62,6 +78,9 @@ namespace FileIODemo
             orderForm.OrderDate = dateTime;
             xmlSerializer.Serialize(fileStream, orderForm);
         }
+        /// <summary>
+        /// Serialized OrderForm class in xml format is deserialized and its properties are displayed on console.
+        /// </summary>
         public void XmlDeSerialization()
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(OrderForm));
@@ -71,12 +90,18 @@ namespace FileIODemo
         }
 
     }
+    /// <summary>
+    /// Demo class with ApplicationName and ApplicationId properties
+    /// </summary>
     [Serializable]
     public class Demo
     {
         public string ApplicationName { get; set; } = "Binary Serialize";
         public int ApplicationId { get; set; } = 1001;
     }
+    /// <summary>
+    /// BlogSites class with Name property.
+    /// </summary>
     [DataContract]
     public class BlogSites
     {
@@ -86,6 +111,9 @@ namespace FileIODemo
         [DataMember]
         public string Description { get; set; }
     }
+    /// <summary>
+    /// OrderFormClass with OrderDate property
+    /// </summary>
     public class OrderForm
     {
         public DateTime OrderDate;
